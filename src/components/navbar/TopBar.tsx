@@ -1,14 +1,13 @@
 import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { useNavigation } from '@react-navigation/native';
 
 type Props = {
-	width: string
+	width: string,
+	onPress: () => void
 }
 
 const TopBar = (props:Props) => {
-	const navigation = useNavigation();
-	const { width } = props;
+	const { width, onPress } = props;
 
 	const styles = StyleSheet.create({
 		container: {
@@ -20,14 +19,10 @@ const TopBar = (props:Props) => {
 		}
 	});
 
-	const navigate = () => {
-		navigation.goBack()
-	}
-
 	return (
 		
 		<View style={styles.container}>
-			<TouchableOpacity onPress={navigate}>
+			<TouchableOpacity onPress={onPress}>
 				<Image 
 					source={require('../../assets/back.png')}
 				/>

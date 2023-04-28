@@ -1,11 +1,11 @@
 import Container from '../../components/container/Container';
-import Register from '../../container/register/Register';
+import Landing from '../../container/register/Landing';
 import Footer from '../../components/footer/Footer';
 
 const Index = (props:any) => {
 	return (
 		<Container>
-			<Register {...props} />
+			<Landing {...props} />
 			<Footer />
 		</Container>
 	);

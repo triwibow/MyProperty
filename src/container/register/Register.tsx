@@ -24,7 +24,7 @@ const ValidationSchema = Yup.object().shape({
 });
 
 const Register = (props:any) => {
-	const { navigation } = props;
+	const { navigation, changeScreen } = props;
 
 	const [values, setValues] = useState<Values>({
 		name: '',
@@ -38,13 +38,14 @@ const Register = (props:any) => {
 	}
 
 	const onSubmit = (val:Values) => {
-		console.log(val);
+		changeScreen(1);
 	}
 
 	return (
 		<ScrollView style={styles.container}>
 			<TopBar
 				width={'85%'}
+				onPress={toLogin}
 			/>
 			<View style={styles.content}>
 				<View style={styles.mb25}>
