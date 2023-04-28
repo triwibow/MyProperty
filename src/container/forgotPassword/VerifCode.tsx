@@ -1,49 +1,47 @@
-import React, { useState } from 'react';
-import { ScrollView,View, Text, StyleSheet} from 'react-native';
+import React, { useState, useRef } from 'react';
+import { ScrollView,View, Text, StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import FormControl from '../../components/field/FormControl';
-import TextField from '../../components/field/TextField';
 import Button from '../../components/button/Button';
 import TopBar from '../../components/navbar/TopBar';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import OTPTextInput from 'react-native-otp-textinput';
 
 type Values = {
-	email:string,
-	password:string
+	code:string
 }
 
 const ValidationSchema = Yup.object().shape({
-	email:Yup.string().email('email tidak valid').required('wajib diisi')
+	code:Yup.string().required('wajib diisi'),
 });
 
-const ForgotPassword = (props: any) => {
+const VerifEmail = (props:any) => {
+	const { changeScreen } = props;
+	const otpInput = useRef(null);
 
-	const { navigation, changeScreen } = props;
 	const [values, setValues] = useState<Values>({
-		email:'',
-		password:''
+		code:''
 	});
 
-	const toLogin = () => {
-		navigation.navigate('login');
+	const back = () => {
+		changeScreen(0);
 	}
 
 	const onSubmit = (val:Values) => {
 		console.log(val);
-		changeScreen(1);
 	}
 
 	return (
 		<ScrollView style={styles.container}>
 			<TopBar
 				width={'85%'}
-				onPress={toLogin}
+				onPress={back}
 			/>
 			<View style={styles.content}>
 				<View style={styles.mb25}>
-					<Text style={styles.title}>Lupa Password</Text>
-					<Text style={styles.subTitle}>Masukan Email kamu untuk mendapatkan password baru.</Text>
+					<Text style={styles.title}>Verifikasi</Text>
+					<Text style={styles.subTitle}>Masukan kode kamu yang sudah dikirim dari email kamu.</Text>
 				</View>
 				<View>
 					<Formik
@@ -54,30 +52,32 @@ const ForgotPassword = (props: any) => {
 						{({handleSubmit,setFieldValue, touched, errors, values}) => {
 							return (
 								<>
-									<FormControl mb={10}>
-										<TextField
-											name='email'
-											label='Email'
-											value={values.email}
-											touched={touched.email}
-											error={errors.email}
-											handleChange={setFieldValue}
-
+									<FormControl mb={14}>
+										<OTPTextInput 
+											ref={otpInput}
+											inputCount={4}
+											handleTextChange={(val:string) => setFieldValue('code', val)}
+											containerStyle={{marginBottom:10}}
+											textInputStyle={{flexBasis:'18%', borderColor:'#4EB647',borderWidth:1, borderBottomWidth:1, borderRadius:5}}
 										/>
+										{touched.code && errors.code && (
+											<Text style={styles.textError}>{errors.code}</Text>
+										)}
 									</FormControl>
+									
 									<Button 
-										text='Berikutnya'
+										text='Verifikasi'
 										loading={false}
 										onPress={handleSubmit}
-										mb={20}
 									/>
 								</>
 							);
 						}}
 					</Formik>
-					<View>
+
+					<View style={{marginTop:RFValue(18)}}>
 						<Text style={styles.dha}>
-							Tunggu untuk menerima konfirmasi kode kamu yang masuk diemail ya.
+							Jika kamu masih kesulitan dalam kata sandi dan fitur keamangan anda. Silahkan hubungi CS
 						</Text>
 					</View>
 				</View>
@@ -134,7 +134,12 @@ const styles = StyleSheet.create({
 	rf: {
 		color: '#787878',
 		fontWeight:'bold'
+	},
+	textError:{
+		fontSize:RFValue(12),
+		marginLeft:12,
+		color:'#D44242'
 	}
 });
 
-export default ForgotPassword;
+export default VerifEmail;

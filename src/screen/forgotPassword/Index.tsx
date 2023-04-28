@@ -1,11 +1,11 @@
 import Container from '../../components/container/Container';
-import ForgotPassword from '../../container/forgotPassword/ForgotPassword';
+import Landing from '../../container/forgotPassword/Landing';
 import Footer from '../../components/footer/Footer';
 
 const Index = (props:any) => {
 	return (
 		<Container>
-			<ForgotPassword {...props} />
+			<Landing {...props} />
 			<Footer />
 		</Container>
 	);
