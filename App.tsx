@@ -1,10 +1,9 @@
 import React from 'react';
-import Login from './src/screen/login/Index';
+import Navigation from './src/navigations/Navigation';
 
 const App = () => {
-
 	return (
-		<Login />
+		<Navigation />
 	);
 }
 
