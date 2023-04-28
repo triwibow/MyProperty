@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView,View, Text, StyleSheet, Image, Touchable } from 'react-native';
+import { ScrollView,View, Text, StyleSheet} from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import FormControl from '../../components/field/FormControl';
 import TextField from '../../components/field/TextField';
@@ -9,33 +9,21 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 type Values = {
-	name:string,
 	email:string,
-	password:string,
-	password_confirm:string
+	password:string
 }
 
 const ValidationSchema = Yup.object().shape({
-	name:Yup.string().required('wajib diisi'),
-	email:Yup.string().email('email tidak valid').required('wajib diisi'),
-	password:Yup.string().required('wajib diisi'),
-	password_confirm:Yup.string().oneOf([Yup.ref('password')], 'konfirmasi password tidak sesuai')
-		.required('wajib diisi')
+	email:Yup.string().email('email tidak valid').required('wajib diisi')
 });
 
-const Register = (props:any) => {
+const ForgotPassword = (props: any) => {
+
 	const { navigation } = props;
-
 	const [values, setValues] = useState<Values>({
-		name: '',
 		email:'',
-		password:'',
-		password_confirm:''
+		password:''
 	});
-
-	const toLogin = () => {
-		navigation.navigate('login');
-	}
 
 	const onSubmit = (val:Values) => {
 		console.log(val);
@@ -48,8 +36,8 @@ const Register = (props:any) => {
 			/>
 			<View style={styles.content}>
 				<View style={styles.mb25}>
-					<Text style={styles.title}>Daftar Akun</Text>
-					<Text style={styles.subTitle}>Sebelum kamu jelajahi property mu disini, kamu harus memulai untuk mendaftar dulu.</Text>
+					<Text style={styles.title}>Lupa Password</Text>
+					<Text style={styles.subTitle}>Masukan Email kamu untuk mendapatkan password baru.</Text>
 				</View>
 				<View>
 					<Formik
@@ -62,17 +50,6 @@ const Register = (props:any) => {
 								<>
 									<FormControl mb={10}>
 										<TextField
-											name='name'
-											label='Nama Lengkap'
-											value={values.name}
-											touched={touched.name}
-											error={errors.name}
-											handleChange={setFieldValue}
-
-										/>
-									</FormControl>
-									<FormControl mb={10}>
-										<TextField
 											name='email'
 											label='Email'
 											value={values.email}
@@ -82,41 +59,19 @@ const Register = (props:any) => {
 
 										/>
 									</FormControl>
-									<FormControl mb={10}>
-										<TextField
-											name='password'
-											label='Password'
-											value={values.password}
-											touched={touched.password}
-											error={errors.password}
-											handleChange={setFieldValue}
-
-										/>
-									</FormControl>
-									<FormControl mb={14}>
-										<TextField
-											name='password_confirm'
-											label='Konfirmasi Password'
-											value={values.password_confirm}
-											touched={touched.password_confirm}
-											error={errors.password_confirm}
-											handleChange={setFieldValue}
-
-										/>
-									</FormControl>
 									<Button 
-										text='Daftar'
+										text='Berikutnya'
 										loading={false}
 										onPress={handleSubmit}
+										mb={20}
 									/>
 								</>
 							);
 						}}
 					</Formik>
-
-					<View style={{marginTop:RFValue(18)}}>
+					<View>
 						<Text style={styles.dha}>
-							Sudah mempunyai akun? <Text onPress={toLogin} style={styles.rf}>Masuk</Text>
+							Tunggu untuk menerima konfirmasi kode kamu yang masuk diemail ya.
 						</Text>
 					</View>
 				</View>
@@ -176,4 +131,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default Register;
+export default ForgotPassword;

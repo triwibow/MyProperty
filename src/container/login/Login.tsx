@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView,View, Text, StyleSheet, Image, Touchable } from 'react-native';
+import { ScrollView,View, Text, StyleSheet, Image } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import FormControl from '../../components/field/FormControl';
 import TextField from '../../components/field/TextField';
@@ -26,9 +26,8 @@ const Login = (props: any) => {
 		password:''
 	});
 
-	const toRegister = () => {
-		navigation.navigate('Register');
-		console.log(navigation);
+	const toScreen = (screen:string) => {
+		navigation.navigate(screen);
 	}
 
 	const onSubmit = (val:Values) => {
@@ -83,7 +82,7 @@ const Login = (props: any) => {
 						}}
 					</Formik>
 					<TextButton
-						onPress={() => console.log('s')}
+						onPress={() => toScreen('forgotPassword')}
 						fontSize={10}
 						alignItems='center'
 						mt={12}
@@ -109,7 +108,7 @@ const Login = (props: any) => {
 
 					<View>
 						<Text style={styles.dha}>
-							Kamu belum mempunyai akun ? <Text onPress={toRegister} style={styles.rf}>Daftar Dulu</Text>
+							Kamu belum mempunyai akun ? <Text onPress={() => toScreen('register')} style={styles.rf}>Daftar Dulu</Text>
 						</Text>
 					</View>
 				</View>
