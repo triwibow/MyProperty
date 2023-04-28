@@ -4,31 +4,36 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import FormControl from '../../components/field/FormControl';
 import TextField from '../../components/field/TextField';
 import Button from '../../components/button/Button';
-import TextButton from '../../components/button/TextButton';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 type Values = {
+	name:string,
 	email:string,
-	password:string
+	password:string,
+	password_confirm:string
 }
 
 const ValidationSchema = Yup.object().shape({
+	name:Yup.string().required('wajib diisi'),
 	email:Yup.string().email('email tidak valid').required('wajib diisi'),
-	password:Yup.string().required('wajib diisi')
+	password:Yup.string().required('wajib diisi'),
+	password_confirm:Yup.string().oneOf([Yup.ref('password')], 'konfirmasi password tidak sesuai')
+		.required('wajib diisi')
 });
 
-const Login = (props: any) => {
-
+const Register = (props:any) => {
 	const { navigation } = props;
+
 	const [values, setValues] = useState<Values>({
+		name: '',
 		email:'',
-		password:''
+		password:'',
+		password_confirm:''
 	});
 
-	const toRegister = () => {
-		navigation.navigate('Register');
-		console.log(navigation);
+	const toLogin = () => {
+		navigation.navigate('Login');
 	}
 
 	const onSubmit = (val:Values) => {
@@ -39,8 +44,8 @@ const Login = (props: any) => {
 		<ScrollView style={styles.container}>
 			<View style={styles.content}>
 				<View style={styles.mb25}>
-					<Text style={styles.title}>Masuk</Text>
-					<Text style={styles.subTitle}>Kamu sudah punya akun silahkan untuk melakukan login, biar bisa jelajahi property mu disini.</Text>
+					<Text style={styles.title}>Daftar Akun</Text>
+					<Text style={styles.subTitle}>Sebelum kamu jelajahi property mu disini, kamu harus memulai untuk mendaftar dulu.</Text>
 				</View>
 				<View>
 					<Formik
@@ -51,6 +56,17 @@ const Login = (props: any) => {
 						{({handleSubmit,setFieldValue, touched, errors, values}) => {
 							return (
 								<>
+									<FormControl mb={10}>
+										<TextField
+											name='name'
+											label='Nama Lengkap'
+											value={values.name}
+											touched={touched.name}
+											error={errors.name}
+											handleChange={setFieldValue}
+
+										/>
+									</FormControl>
 									<FormControl mb={10}>
 										<TextField
 											name='email'
@@ -73,8 +89,19 @@ const Login = (props: any) => {
 
 										/>
 									</FormControl>
+									<FormControl mb={14}>
+										<TextField
+											name='password_confirm'
+											label='Konfirmasi Password'
+											value={values.password_confirm}
+											touched={touched.password_confirm}
+											error={errors.password_confirm}
+											handleChange={setFieldValue}
+
+										/>
+									</FormControl>
 									<Button 
-										text='Login'
+										text='Daftar'
 										loading={false}
 										onPress={handleSubmit}
 									/>
@@ -82,34 +109,10 @@ const Login = (props: any) => {
 							);
 						}}
 					</Formik>
-					<TextButton
-						onPress={() => console.log('s')}
-						fontSize={10}
-						alignItems='center'
-						mt={12}
-						mb={28}
-					>
-						Lupa Password
-					</TextButton>
 
-					<View style={{flexDirection:'row', justifyContent:'center', marginBottom:20}}>
-						<View style={styles.bgGoogle}>
-							<Image 
-								style={{width:30, height:30, resizeMode:'contain'}}
-								source={require('../../assets/google.png')}
-							/>
-						</View>
-						<View style={styles.bgFb}>
-							<Image
-								style={{width:30, height:30, resizeMode:'contain'}} 
-								source={require('../../assets/fb.png')}
-							/>
-						</View>
-					</View>
-
-					<View>
+					<View style={{marginTop:RFValue(18)}}>
 						<Text style={styles.dha}>
-							Kamu belum mempunyai akun ? <Text onPress={toRegister} style={styles.rf}>Daftar Dulu</Text>
+							Sudah mempunyai akun? <Text onPress={toLogin} style={styles.rf}>Masuk</Text>
 						</Text>
 					</View>
 				</View>
@@ -169,4 +172,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default Login;
+export default Register;
