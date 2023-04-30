@@ -22,10 +22,16 @@ const styles = StyleSheet.create({
 		alignSelf:'center'
 	},
 	title: {
-		textAlign:'center'
+		textAlign:'center',
+		color:'#464646',
+		fontSize:RFValue(21),
+		fontWeight:'bold',
+		marginBottom:RFValue(10)
 	},
 	subTitle: {
-		textAlign:'center'
+		textAlign:'center',
+		fontSize:RFValue(13),
+		color:'#787878'
 	}
 })
 
