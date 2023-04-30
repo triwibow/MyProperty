@@ -6,6 +6,7 @@ const First = (props:any) => {
 		<View style={styles.container}>
 			<Image 
 				source={require('../../assets/slide3.png')}
+				style={styles.img}
 			/>
 			<Text style={styles.title}>Discover the best property</Text>
 			<Text style={styles.subTitle}>Untuk keluarga harmonis demi menentukan tempat tinggal masa depan yang nyaman</Text>
@@ -20,6 +21,9 @@ const styles = StyleSheet.create({
 		alignItems:'center',
 		width:'90%',
 		alignSelf:'center'
+	},
+	img: {
+		marginBottom:RFValue(28)
 	},
 	title: {
 		textAlign:'center',
