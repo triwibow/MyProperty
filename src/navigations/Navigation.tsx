@@ -5,6 +5,7 @@ import Intro from '../screen/intro/Index';
 import Login from '../screen/login/Index';
 import Register from '../screen/register/Index';
 import ForgotPassword from '../screen/forgotPassword/Index';
+import Dashboard from '../screen/dashboard/Index';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,11 @@ const Navigation = () => {
           name="forgotPassword"
           component={ForgotPassword}
           options={{title: 'Forgot Password', headerShown:false}}
+        />
+        <Stack.Screen
+          name="dashboard"
+          component={Dashboard}
+          options={{title: 'Dashboard', headerShown:false}}
         />
       </Stack.Navigator>
     </NavigationContainer>
