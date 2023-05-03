@@ -6,8 +6,8 @@ const Dashboard = (props:any) => {
 
 	return (
 		<ScrollView style={styles.container}>
-			<TopBackgroundContent width="85%" />
-			<Nearest width="85%" />
+			<TopBackgroundContent width="90%" />
+			<Nearest width="90%" />
 		</ScrollView>
 	);
 }
