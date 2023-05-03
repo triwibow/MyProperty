@@ -10,24 +10,35 @@ type Props = {
 	icon:number,
 	mb?:number,
 	mt?:number,
+	ml?:number,
+	mr?:number,
+	px?:number,
 	bgColor?:string,
 	textColor?:string,
 	borderColor?:string
+	width?:number
 }
 
 const ButtonIcon = (props: Props) => {
-	const { text, onPress, loading, mb, mt, bgColor, icon, textColor, borderColor } = props;
+	const { text, onPress, loading, mb, mt,ml,mr,px, bgColor, icon, textColor, borderColor, width } = props;
 
 	const styleLayout = StyleSheet.create({
 		button: {
-			width:"100%",
 			backgroundColor:bgColor? bgColor:'#45B549',
+			paddingLeft:0,
+			paddingRight:0,
 			padding:0,
+			paddingHorizontal: px? RFValue(px):0,
 			borderRadius: RFValue(10),
 			marginBottom:mb?RFValue(mb):0,
 			marginTop:mt?RFValue(mt):0,
+			marginLeft:ml?RFValue(ml):0,
+			marginRight:mr?RFValue(mr):0,
 			borderWidth: borderColor? 1:0,
-			borderColor: borderColor? borderColor:'transparent'
+			borderColor: borderColor? borderColor:'transparent',
+			...(width && {
+				width: width? RFValue(width):'100%',
+			})
 		},
 		text: {
 			color:textColor? textColor:'#FFF'
