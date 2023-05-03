@@ -1,9 +1,11 @@
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Image } from 'react-native';
 import { Card } from 'react-native-paper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import ButtonIcon from '../../../components/button/ButtonIcon';
 import { useState } from 'react';
 import TextButton from '../../../components/button/TextButton';
+import BadgeHorizontal from '../../../components/badge/BadgeHorizontal';
+import CardNearest from './component/CardNearest';
 
 type Props = {
 	width?:string
@@ -19,6 +21,14 @@ type ListButton = {
 	borderColor:string,
 	textColor:string,
 	px:number
+}
+
+type ListNearest = {
+	id:number,
+	price:string,
+	location:string,
+	type:string,
+	bgImage:number
 }
 
 const Nearest = (props:Props) => {
@@ -58,6 +68,30 @@ const Nearest = (props:Props) => {
 			iconNonActive:require('../../../assets/mapGrey.png'),
 		}
 	]);
+
+	const [listNearest, setListNearest] = useState<ListNearest[]>([
+		{
+			id:1,
+			type:'Rumah',
+			price:'Rp. 175 jt',
+			location:'Giwangan, Yogyakarta',
+			bgImage:require('../../../assets/apartement.jpg')
+		},
+		{
+			id:2,
+			type:'Apartment',
+			price:'Rp. 220 jt',
+			location:'Giwangan, Yogyakarta',
+			bgImage:require('../../../assets/apartement.jpg')
+		},
+		{
+			id:3,
+			type:'Rumah',
+			price:'Rp. 725 jt',
+			location:'Giwangan, Yogyakarta',
+			bgImage:require('../../../assets/apartement.jpg')
+		}
+	])
 
 	const styleLayout = StyleSheet.create({
 		width:{
@@ -121,7 +155,7 @@ const Nearest = (props:Props) => {
 					<View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-between', marginBottom:20}}>
 						<Text style={styles.title}>Terdekat</Text>
 						<TextButton
-							fontSize={9}
+							fontSize={12}
 							color="#49B548"
 							fw={'400'}
 						>
@@ -130,9 +164,17 @@ const Nearest = (props:Props) => {
 					</View>
 
 					<View style={styles.nearest}>
-						<Card style={styles.cardNearest}>
-							<Card.Cover source={require('../../../assets/apartement.jpg')} />
-						</Card>
+						{listNearest.map(item => {
+							return (
+								<CardNearest 
+									key={item.id}
+									price={item.price}
+									location={item.location}
+									type={item.type}
+									bgImage={item.bgImage}
+								/>
+							)
+						})}
 					</View>
 				</Card.Content>
 			</Card>
@@ -166,10 +208,9 @@ const styles = StyleSheet.create({
 	},
 	nearest: {
 		flexDirection:'row',
-		flex:1
-	},
-	cardNearest: {
-		flexBasis:'33.3%'
+		flex:1,
+		padding:0,
+		justifyContent:'space-between'
 	}
 })
 
