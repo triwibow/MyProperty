@@ -1,5 +1,5 @@
-import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
-import TopBackgroundContent from './component/TopBackgroundContent';
+import { ScrollView, StyleSheet } from 'react-native';
+import TopBackgroundContent from './topBackgroundContent/TopBackgroundContent';
 
 const Dashboard = (props:any) => {
 

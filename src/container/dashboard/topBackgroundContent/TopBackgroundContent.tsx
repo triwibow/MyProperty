@@ -1,5 +1,5 @@
 import { View, StyleSheet, Text, Image, Dimensions} from 'react-native';
-import AppBar from './AppBar';
+import AppBar from '../component/AppBar';
 import { RFValue } from 'react-native-responsive-fontsize';
 import ButtonIcon from '../../../components/button/ButtonIcon';
 
