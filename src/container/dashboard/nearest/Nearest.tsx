@@ -1,8 +1,9 @@
-import { StyleSheet, View, ScrollView } from 'react-native';
-import { Card, Text } from 'react-native-paper';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { Card } from 'react-native-paper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import ButtonIcon from '../../../components/button/ButtonIcon';
 import { useState } from 'react';
+import TextButton from '../../../components/button/TextButton';
 
 type Props = {
 	width?:string
@@ -99,7 +100,7 @@ const Nearest = (props:Props) => {
 						scrollEnabled
 						showsHorizontalScrollIndicator={false}
 						contentContainerStyle={styles.contentContainerFlatListStyle}
-						style={{ flexGrow: 1 }}
+						style={{ flexGrow: 1, marginBottom:20 }}
 					>
 						{listButton.map(item => {
 							return (
@@ -117,6 +118,22 @@ const Nearest = (props:Props) => {
 							)
 						})}
 					</ScrollView>
+					<View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-between', marginBottom:20}}>
+						<Text style={styles.title}>Terdekat</Text>
+						<TextButton
+							fontSize={9}
+							color="#49B548"
+							fw={'400'}
+						>
+							Lihat Semua
+						</TextButton>
+					</View>
+
+					<View style={styles.nearest}>
+						<Card style={styles.cardNearest}>
+							<Card.Cover source={require('../../../assets/apartement.jpg')} />
+						</Card>
+					</View>
 				</Card.Content>
 			</Card>
 		</View>
@@ -138,13 +155,22 @@ const styles = StyleSheet.create({
 		paddingVertical:RFValue(20),
 		paddingHorizontal:RFValue(20)
 	},
-	navWrapper: {
-		flexDirection:'row'
-	},
 	contentContainerFlatListStyle: {
 		alignItems: "center",
 		height: "100%",
 	},
+	title: {
+		color:'#5B5B5B',
+		fontSize:RFValue(16),
+		fontWeight:'700'
+	},
+	nearest: {
+		flexDirection:'row',
+		flex:1
+	},
+	cardNearest: {
+		flexBasis:'33.3%'
+	}
 })
 
 export default Nearest;

@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text, StyleSheet, FlexAlignType } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, FlexAlignType, TextStyle } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 type Props = {
@@ -7,10 +7,12 @@ type Props = {
 	fontSize?: number,
 	alignItems?:FlexAlignType,
 	mt?:number,
-	mb?:number
+	mb?:number,
+	color?:string,
+	fw?:TextStyle['fontWeight']
 }
 
-const TextButton = ({onPress, children, fontSize, alignItems, mt, mb}:Props)=> {
+const TextButton = ({onPress, children, fontSize, alignItems, mt, mb, color, fw}:Props)=> {
 	const styles = StyleSheet.create({
 		button:{
 			backgroundColor:'transparent',
@@ -20,8 +22,8 @@ const TextButton = ({onPress, children, fontSize, alignItems, mt, mb}:Props)=> {
 		},
 		text: {
 			fontSize:RFValue(fontSize? RFValue(fontSize): RFValue(16)),
-			color: '#67B2E8',
-			fontWeight:'bold'
+			color: color? color:'#67B2E8',
+			fontWeight: fw?fw:'bold'
 		}
 	});
 
