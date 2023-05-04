@@ -186,8 +186,7 @@ const Nearest = (props:Props) => {
 const styles = StyleSheet.create({
 	container: {
 		alignSelf:'center',
-		paddingVertical:20,
-		transform:[{translateY: RFValue(-65)}]
+		marginTop:RFValue(-65)
 	},
 	card: {
 		backgroundColor:'#FFF',
