@@ -31,7 +31,7 @@ const Login = (props: any) => {
 	}
 
 	const onSubmit = (val:Values) => {
-		navigation.navigate('dashboard');
+		navigation.navigate('Main', { screen:'dashboard'});
 	}
 
 	return (

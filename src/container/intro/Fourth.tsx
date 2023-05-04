@@ -7,7 +7,7 @@ const Fourth = (props:any) => {
 	const { navigation } = props;
 
 	const toLogin = () => {
-		navigation.navigate('login');
+		navigation.navigate('Main', { screen: 'login'});
 	}
 
 	const toRegister = () => {
