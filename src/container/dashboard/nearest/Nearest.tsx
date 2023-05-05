@@ -6,6 +6,8 @@ import { useState } from 'react';
 import TextButton from '../../../components/button/TextButton';
 import BadgeHorizontal from '../../../components/badge/BadgeHorizontal';
 import CardNearest from './component/CardNearest';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type Props = {
 	width?:string
@@ -31,8 +33,17 @@ type ListNearest = {
 	bgImage:number
 }
 
+type StackParamList = {
+	nearest: { foo: string, onBar: () => void } | undefined
+}
+
+type NavigationProps = NativeStackNavigationProp<StackParamList>
+
+
 const Nearest = (props:Props) => {
+	const navigation = useNavigation<NavigationProps>();
 	const { width } = props;
+
 	const [listButton, setListButton] = useState<ListButton[]>([
 		{
 			id:1,
@@ -158,6 +169,10 @@ const Nearest = (props:Props) => {
 							fontSize={12}
 							color="#49B548"
 							fw={'400'}
+							onPress={() => {
+								navigation.navigate('nearest')
+								console.log('kkk')
+							}}
 						>
 							Lihat Semua
 						</TextButton>

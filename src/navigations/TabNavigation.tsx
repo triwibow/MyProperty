@@ -8,6 +8,7 @@ import Login from '../screen/login/Index';
 import Register from '../screen/register/Index';
 import ForgotPassword from '../screen/forgotPassword/Index';
 import Dashboard from '../screen/dashboard/Index';
+import Nearest from '../screen/nearest/Index';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -42,6 +43,11 @@ const AppNavigation = () => {
         name="forgotPassword"
         component={ForgotPassword}
         options={{title: 'Forgot Password', headerShown:false}}
+      />
+      <Stack.Screen
+        name="nearest"
+        component={Nearest}
+        options={{title: 'Nearest', headerShown:false}}
       />
       <Stack.Screen
         name="Main"
