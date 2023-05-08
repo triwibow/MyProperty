@@ -4,6 +4,8 @@ import BadgeHorizontal from "../../../components/badge/BadgeHorizontal";
 import LinearGradient from 'react-native-linear-gradient';
 import { useState } from "react";
 import { RFValue } from "react-native-responsive-fontsize";
+import TextButton from "../../../components/button/TextButton";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 type Props = {
 	width?:string
@@ -56,20 +58,30 @@ const MainCard = (props:Props) => {
 						<Text style={styles.desc}>490 m2 Luas Tanah</Text>
 					</View>
 					<View style={styles.facility}>
-						<Image style={{marginRight:8}} source={require('../../../assets/luas.png')} />
+						<Image style={{marginRight:8}} source={require('../../../assets/gedung.png')} />
 						<Text style={styles.desc}>400 m2 Luas Bangunan </Text>
 					</View>
 					<View style={styles.facility}>
-						<Image style={{marginRight:8}} source={require('../../../assets/luas.png')} />
+						<Image style={{marginRight:8}} source={require('../../../assets/kasur.png')} />
 						<Text style={styles.desc}>4 Kamar Tidur</Text>
 					</View>
 					<View style={styles.facility}>
-						<Image style={{marginRight:8}} source={require('../../../assets/luas.png')} />
+						<Image style={{marginRight:8}} source={require('../../../assets/km.png')} />
 						<Text style={styles.desc}>2 Kamar Mandi</Text>
 					</View>
 					<View style={styles.facility}>
-						<Image style={{marginRight:8}} source={require('../../../assets/luas.png')} />
+						<Image style={{marginRight:8}} source={require('../../../assets/garasi.png')} />
 						<Text style={styles.desc}>1 Garasi</Text>
+					</View>
+					<View style={styles.facility}>
+						<TextButton
+							fontSize={12}
+							color="#49B548"
+							alignItems="center"
+							onPress={() => console.log('press')}
+						>
+							Lihat Semua <Icon name={'chevron-right'} color={'#49B548'} size={10}  />
+						</TextButton>
 					</View>
 				</View>
 			</Card.Content>
@@ -135,10 +147,11 @@ const styles = StyleSheet.create({
 		backgroundColor:'#FFF',
 		borderBottomLeftRadius:10,
 		borderBottomRightRadius:10,
-		paddingVertical:RFValue(20),
+		paddingVertical:RFValue(15),
 		paddingHorizontal:RFValue(20),
 		justifyContent:'flex-start',
-		alignItems:"flex-start"
+		alignItems:"flex-start",
+		elevation:2,
 	},
 
 	facility: {

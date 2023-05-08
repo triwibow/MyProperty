@@ -1,8 +1,9 @@
+import { ReactNode } from 'react';
 import { TouchableOpacity, Text, StyleSheet, FlexAlignType, TextStyle } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 type Props = {
-	children: string,
+	children: ReactNode,
 	onPress?: () => void,
 	fontSize?: number,
 	alignItems?:FlexAlignType,
