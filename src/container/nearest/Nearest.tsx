@@ -11,10 +11,10 @@ const Nearest = (props:any) => {
 	return (
 		<View style={styles.container}>
 			<AppBar 
-				width='85%'
+				width='90%'
 				onBackPress={onBackPress} 
 			/>
-			<MainCard width='85%' />
+			<MainCard width='90%' />
 		</View>
 	);
 }
