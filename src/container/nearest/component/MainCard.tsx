@@ -54,23 +54,23 @@ const MainCard = (props:Props) => {
 			<Card.Content style={styles.cardContent}>
 				<View style={styles.content}>
 					<View style={styles.facility}>
-						<Image style={{marginRight:8}} source={require('../../../assets/luas.png')} />
+						<Image style={[styles.iconImg,{marginRight:8}]} source={require('../../../assets/luas.png')} />
 						<Text style={styles.desc}>490 m2 Luas Tanah</Text>
 					</View>
 					<View style={styles.facility}>
-						<Image style={{marginRight:8}} source={require('../../../assets/gedung.png')} />
+						<Image style={[styles.iconImg,{marginRight:8}]} source={require('../../../assets/gedung.png')} />
 						<Text style={styles.desc}>400 m2 Luas Bangunan </Text>
 					</View>
 					<View style={styles.facility}>
-						<Image style={{marginRight:8}} source={require('../../../assets/kasur.png')} />
+						<Image style={[styles.iconImg,{marginRight:8}]} source={require('../../../assets/kasur.png')} />
 						<Text style={styles.desc}>4 Kamar Tidur</Text>
 					</View>
 					<View style={styles.facility}>
-						<Image style={{marginRight:8}} source={require('../../../assets/km.png')} />
+						<Image style={[styles.iconImg,{marginRight:8}]} source={require('../../../assets/km.png')} />
 						<Text style={styles.desc}>2 Kamar Mandi</Text>
 					</View>
 					<View style={styles.facility}>
-						<Image style={{marginRight:8}} source={require('../../../assets/garasi.png')} />
+						<Image style={[styles.iconImg,{marginRight:8}]} source={require('../../../assets/garasi.png')} />
 						<Text style={styles.desc}>1 Garasi</Text>
 					</View>
 					<View style={styles.facility}>
@@ -80,7 +80,7 @@ const MainCard = (props:Props) => {
 							alignItems="center"
 							onPress={() => console.log('press')}
 						>
-							Lihat Semua <Icon name={'chevron-right'} color={'#49B548'} size={10}  />
+							Lihat fasilitas lainnya  <Icon name={'chevron-right'} color={'#49B548'} size={10}  />
 						</TextButton>
 					</View>
 				</View>
@@ -93,7 +93,9 @@ const styles = StyleSheet.create({
 	card: {
 		alignSelf:'center',
 		position:'relative',
-		backgroundColor:'#FFF'
+		shadowColor:'transparent',
+		marginBottom:RFValue(20),
+
 	},
 	cover: {
 		position:'absolute',
@@ -136,14 +138,13 @@ const styles = StyleSheet.create({
 		paddingVertical:0,
 		paddingHorizontal:0,
 		backgroundColor:'transparent',
-		paddingBottom:0
+		paddingBottom:0,
 	},
 
 	content: {
 		flex:1,
 		flexDirection:'row',
 		flexWrap:'wrap',
-		minHeight:RFValue(120),
 		backgroundColor:'#FFF',
 		borderBottomLeftRadius:10,
 		borderBottomRightRadius:10,
@@ -152,6 +153,11 @@ const styles = StyleSheet.create({
 		justifyContent:'flex-start',
 		alignItems:"flex-start",
 		elevation:2,
+	},
+	iconImg: {
+		width:RFValue(18),
+		height:RFValue(18),
+		resizeMode:'contain'
 	},
 
 	facility: {

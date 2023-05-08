@@ -2,7 +2,7 @@ import { View, Image, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 type Props = {
-	width: string,
+	width?: string,
 	onBackPress: () => void
 }
 
