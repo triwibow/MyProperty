@@ -2,11 +2,12 @@ import { View, Image, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 type Props = {
-	width: string
+	width: string,
+	onBackPress: () => void
 }
 
 const AppBar = (props:Props) => {
-	const { width } = props;
+	const { width, onBackPress } = props;
 
 	const styleLayout = StyleSheet.create({
 		width: {
@@ -18,7 +19,9 @@ const AppBar = (props:Props) => {
 		
 		<View style={[styles.container, styleLayout.width]}>
 			<View style={{flexDirection:'row', alignItems:'center'}}>
-				<TouchableOpacity style={{marginRight:14}}>
+				<TouchableOpacity
+					onPress={onBackPress} 
+					style={{marginRight:14}}>
 					<Image 
 						source={require('../../../assets/back.png')}
 					/>
